@@ -1,0 +1,639 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillStratum</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        .course-card {
+            width: 350px; /* Fixed width for each course card */
+            transition: transform 0.3s, transform 0.3s;
+        }
+        .hidden-course {
+            display: none;
+        }
+        .course-card:hover {
+            transform: scale(1.05);
+        }
+        .transparent-section {
+            background-color: rgba(68, 114, 196, 0.3); /* Adjusted RGB color with 0.5 (50%) opacity */
+            /* Other styles for your section */
+        }
+        
+        body{
+            background-image: url("{% static 'img/bg-image.jpg' %}"); /* Provide the path to your background image */
+            background-size: cover; /* Scales the image to cover the entire container */
+            background-position: center; /* Centers the image horizontally and vertically */
+            background-attachment: fixed; /* Makes the background fixed while scrolling */
+            background-repeat: repeat; /* Prevents the image from repeating */
+        }
+                
+    </style>
+</head>
+<body class="bg-gray-100">
+    {% include "header.html" %}
+    <!-- Hero Section -->
+    <section class="relative h-screen" style="position: relative;" id="Home">
+        <div class="absolute inset-0 bg-black opacity-50 backdrop-blur-lg"></div>
+        <div class="absolute inset-0 bg-cover bg-center"style="background-image: url('{% static 'img/bestbg.jpg' %}'); filter: blur(3px);"
+        ></div>
+        <div class="container mx-auto text-center relative z-10 h-full flex flex-col justify-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-black leading-tight mb-4" id="typing-title"></h1>
+            <p class="text-xl md:text-2xl text-black leading-6 mb-8">Unlock the Power of Knowledge and Achieve Your Dreams</p>
+            <div>
+                <a href="#Courses" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-full transition duration-300 transform hover:scale-105 text-lg md:text-xl border-2 border-blue-500">Explore</a>
+            </div>
+        </div>
+    </section>
+    
+    
+
+<script>
+    const title = "Welcome to Our E-Learning Platform";
+    const titleElement = document.getElementById("typing-title");
+    
+    function typeTitle() {
+        titleElement.textContent = ""; // Clear the title initially
+        let i = 0;
+        const interval = setInterval(function () {
+            titleElement.textContent += title[i];
+            i++;
+            if (i >= title.length) {
+                clearInterval(interval);
+            }
+        }, 80); // Adjust the delay (in milliseconds) to control typing speed
+    }
+    
+    typeTitle(); // Start the typing effect when the page loads
+    
+</script>     
+
+    <!-- About Section -->
+    <section class="bg-gray-100 py-16" id="Community">
+        <div class="container mx-auto px-4 max-w-screen-xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="lg:mb-0">
+                    <div class="relative h-96 rounded-lg overflow-hidden shadow-lg">
+                        <img class="absolute w-full h-full object-cover"  src="{% static 'img/about.jpg' %}" alt="About Image">
+                    </div>
+                </div>
+                <div class="lg:col-span-1">
+                    <div class="mb-8">
+                        <h6 class="text-indigo-600 text-lg font-semibold tracking-wide uppercase">About Us</h6>
+                        <h1 class="text-4xl font-extrabold text-gray-900 leading-tight">Your Gateway to Lifelong Learning</h1>
+                    </div>
+                    <p class="text-gray-700 text-xl leading-relaxed">
+                        At <strong>SkillStratum</strong>, we are dedicated to empowering your journey of learning, growth, and success. Our platform offers a diverse range of high-quality online courses tailored to your unique learning style. We are champions of inclusivity and innovation, providing a welcoming space for all learners. Whether you're upskilling, changing careers, or exploring new interests, SkillStratum is your go-to destination for accessible and affordable education. Embark on your learning journey with us today.
+                    </p>
+                    <div class="flex justify-between mt-8 space-x-4">
+                        <div class="w-1/4">
+                            <div class="bg-blue-500 text-center p-6 rounded-lg text-white shadow-md transform transition-transform hover:scale-105">
+                                <h1 class="text-3xl font-semibold text-yellow-400" data-count="4">0</h1>
+                                <h6 class="text-lg font-semibold uppercase">Available Subjects</h6>
+                            </div>
+                        </div>
+                        <div class="w-1/4">
+                            <div class="bg-green-500 text-center p-6 rounded-lg text-white shadow-md transform transition-transform hover:scale-105">
+                                <h1 class="text-3xl font-semibold text-yellow-400" data-count="4">0</h1>
+                                <h6 class="text-lg font-semibold uppercase">Online Courses</h6>
+                            </div>
+                        </div>
+                        <div class="w-1/4">
+                            <div class="bg-purple-500 text-center p-6 rounded-lg text-white shadow-md transform transition-transform hover:scale-105">
+                                <h1 class="text-3xl font-semibold text-yellow-400" data-count="12">0</h1>
+                                <h6 class="text-lg font-semibold uppercase">Skilled Instructors</h6>
+                            </div>
+                        </div>
+                        <div class="w-1/4">
+                            <div class="bg-red-500 text-center p-6 rounded-lg text-white shadow-md transform transition-transform hover:scale-105">
+                                <h1 class="text-3xl font-semibold text-yellow-400" data-count="800">0</h1>
+                                <h6 class="text-lg font-semibold uppercase">Happy Students</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+<!-- The new section -->
+<section class="bg-gray-100" id="Resources">
+    <div class="container mx-auto mt-10 p-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div class="lg:mb-0">
+                <div>
+                    <h6 class="text-indigo-600 text-2xl font-semibold tracking-wide uppercase mb-4">
+                        Why Choose Us?
+                    </h6>
+                    <h1 class="text-4xl font-extrabold text-gray-900 leading-tight mb-6">
+                        Why You Should Start Learning with Us?
+                    </h1>
+                </div>
+                <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                    At our learning institute, we offer a world of opportunities for your education. Our dedicated team is committed to your success. Here's why you should choose us:
+                </p>
+                <div class="grid gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md flex items-center space-x-4 transition-transform transform hover:scale-105">
+                        <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center">
+                            <img src="{% static 'img/instructor.png' %}" alt="Skilled Instructors" class="h-12 w-12 text-white">
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold">
+                                Skilled Instructors
+                            </h4>
+                            <p class="text-gray-700">
+                                Our expert instructors are passionate about teaching and are here to help you succeed. They bring a wealth of knowledge and experience to every class.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md flex items-center space-x-4 transition-transform transform hover:scale-105">
+                        <div class="w-20 h-20 bg-secondary rounded-full flex items-center justify-center">
+                            <img src="{% static 'img/certificate.png' %}" alt="International Certificate" class="h-12 w-12 text-white">
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold">
+                                International Certificate
+                            </h4>
+                            <p class="text-gray-700">
+                                Upon completion of our programs, you'll receive internationally recognized certificates that open doors to global opportunities. Your success is our priority.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md flex items-center space-x-4 transition-transform transform hover:scale-105">
+                        <div class="w-20 h-20 bg-warning rounded-full flex items-center justify-center">
+                            <img src="{% static 'img/online.jpg' %}" alt="Online Classes" class="h-12 w-12 text-white">
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold">
+                                Online Classes
+                            </h4>
+                            <p class="text-gray-700">
+                                Our flexible online classes make learning convenient for you. Whether you're at home or on the go, our courses are accessible and engaging.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="lg:flex">
+                <img class="object-cover w-full h-full rounded-lg shadow-md"src=" {% static 'img/feature.jpg' %}" alt="Feature Image">
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- JavaScript for Number Animation -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const counters = document.querySelectorAll('[data-count]');
+            counters.forEach((counter) => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-count');
+                    const count = +counter.innerText;
+                    const speed = 500; // Adjust the animation speed
+
+                    const increment = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + increment);
+                        setTimeout(updateCount, 1);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+
+                updateCount();
+            });
+        });
+    </script>
+    <br><br><br><br><br>
+    <div class="bg-blue-500 text-white py-16">
+        <div class="container mx-auto text-center">
+            <h6 class="text-xs text-gray-300 font-semibold tracking-widest">Our Courses</h6>
+            <h1 class="text-4xl font-extrabold leading-tight">Discover Our Latest Course Releases</h1>
+        </div>
+    </div>
+    <div class="transparent-section">    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Courses Section -->
+    <section class="container mx-auto py-10" id="Courses">
+        
+        <div class="relative overflow-x-hidden">
+            <div id="courseCarousel" class="flex space-x-4">
+                <!-- Course Item 1 -->
+                <div class="course-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl animate__animated animate__fadeIn">
+                    <div class="relative">
+                        <img src=" {% static 'img/Web Design.jpeg' %}" alt="Course 1" class="w-full h-64 object-cover">
+                        <div class="absolute top-0 left-0 mt-2 ml-2 bg-blue-500 text-white font-semibold py-1 px-3 rounded-full">
+                            New
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-2xl text-gray-800 font-semibold mb-3">Web Design & Development for Beginners</h3>
+                        <div class="flex justify-between text-gray-600 mb-3">
+                            <span><i class="fas fa-user mr-2"></i>takumi Saito</span>
+                            <span><i class="fas fa-star mr-2"></i>4.5 <small>(250)</small></span>
+                        </div>
+                        <p class="text-gray-700 mb-4">Master the art of web design and development from scratch. This course is perfect for beginners.</p>
+                        <div class="flex justify-between items-center">
+                            <a href="{% url 'Learn' %}#web-design" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full inline-block transition transform hover:scale-105 animate__animated animate__fadeIn">Learn More</a>
+                            <div class="text-red-500 text-lg font-semibold">900₹</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat the above course item for other courses -->
+               <!-- Course Item 1: App Development -->
+<div class="course-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl animate__animated animate__fadeIn">
+    <div class="relative">
+        <img src=" {% static 'img/Apps Design.jpeg' %}" alt="App Development" class="w-full h-64 object-cover">
+        <div class="absolute top-0 left-0 mt-2 ml-2 bg-blue-500 text-white font-semibold py-1 px-3 rounded-full">
+            New
+        </div>
+    </div>
+    <div class="p-4">
+        <h3 class="text-2xl text-gray-800 font-semibold mb-3">Mobile App Development Fundamentals</h3>
+        <div class="flex justify-between text-gray-600 mb-3">
+            <span><i class="fas fa-user mr-2"></i>Yui Tanaka</span>
+            <span><i class="fas fa-star mr-2"></i>4.7 <small>(320)</small></span>
+        </div>
+        <p class="text-gray-700 mb-4">Learn the basics of mobile app development and create your own apps from scratch.</p>
+        <div class="flex justify-between items-center">
+            <a href="{% url 'Learn' %}#app-development" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full inline-block transition transform hover:scale-105 animate__animated animate__fadeIn">Learn More</a>
+            <div class="text-red-500 text-lg font-semibold">850₹</div>
+        </div>
+    </div>
+</div>
+
+<!-- Course Item 2: SEO -->
+<div class="course-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl animate__animated animate__fadeIn">
+    <div class="relative">
+        <img src=" {% static 'img/SEO.jpg' %}" alt="SEO" class="w-full h-64 object-cover">
+        <div class="absolute top-0 left-0 mt-2 ml-2 bg-blue-500 text-white font-semibold py-1 px-3 rounded-full">
+            New
+        </div>
+    </div>
+    <div class="p-4">
+        <h3 class="text-2xl text-gray-800 font-semibold mb-3">SEO Mastery: Rank Your Website on Google</h3>
+        <div class="flex justify-between text-gray-600 mb-3">
+            <span><i class="fas fa-user mr-2"></i>Ryota Suzuki</span>
+            <span><i class="fas fa-star mr-2"></i>4.9 <small>(420)</small></span>
+        </div>
+        <p class="text-gray-700 mb-4">Unlock the secrets of SEO and boost your website's visibility in search engines.</p>
+        <div class="flex justify-between items-center">
+            <a href="{% url 'Learn' %}#seo" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full inline-block transition transform hover:scale-105 animate__animated animate__fadeIn">Learn More</a>
+            <div class="text-red-500 text-lg font-semibold">1000₹</div>
+        </div>
+    </div>
+</div>
+
+<!-- Course Item 3: Research -->
+<div class="course-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl animate__animated animate__fadeIn">
+    <div class="relative">
+        <img src=" {% static 'img/Research.jpg' %}" alt="Research" class="w-full h-64 object-cover">
+        <div class="absolute top-0 left-0 mt-2 ml-2 bg-blue-500 text-white font-semibold py-1 px-3 rounded-full">
+            New
+        </div>
+    </div>
+    <div class="p-4">
+        <h3 class="text-2xl text-gray-800 font-semibold mb-3">Advanced Research Methods and Analysis</h3>
+        <div class="flex justify-between text-gray-600 mb-3">
+            <span><i class="fas fa-user mr-2"></i>Miyu Watanabe</span>
+            <span><i class="fas fa-star mr-2"></i>4.8 <small>(380)</small></span>
+        </div>
+        <p class="text-gray-700 mb-4">Master advanced research techniques and data analysis for academic and professional projects.</p>
+        <div class="flex justify-between items-center">
+            <a href="{% url 'Learn' %}#research" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full inline-block transition transform hover:scale-105 animate__animated animate__fadeIn">Learn More</a>
+            <div class="text-red-500 text-lg font-semibold">600₹</div>
+        </div>
+    </div>
+</div>
+
+<!-- Course Item 4: Marketing -->
+<div class="course-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl animate__animated animate__fadeIn">
+    <div class="relative">
+        <img src=" {% static 'img/Marketing.jpg' %}" alt="Marketing" class="w-full h-64 object-cover">
+        <div class="absolute top-0 left-0 mt-2 ml-2 bg-blue-500 text-white font-semibold py-1 px-3 rounded-full">
+            New
+        </div>
+    </div>
+    <div class="p-4">
+        <h3 class="text-2xl text-gray-800 font-semibold mb-3">Digital Marketing Strategies for Success</h3>
+        <div class="flex justify-between text-gray-600 mb-3">
+            <span><i class="fas fa-user mr-2"></i>Kazuki hayashi</span>
+            <span><i class="fas fa-star mr-2"></i>4.6 <small>(290)</small></span>
+        </div>
+        <p class="text-gray-700 mb-4">Learn effective digital marketing strategies to grow your business or career.</p>
+        <div class="flex justify-between items-center">
+            <a href="{% url 'Learn' %}#digital-marketing" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full inline-block transition transform hover:scale-105 animate__animated animate__fadeIn">Learn More</a>
+            <div class="text-red-500 text-lg font-semibold">900₹</div>
+        </div>
+    </div>
+</div>
+
+            <button id="prevButton" class="absolute top-1/2 left-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full animate__animated animate__fadeIn transform -translate-y-1/2 -translate-x-1/2">&larr;</button>
+            <button id="nextButton" class="absolute top-1/2 right-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full animate__animated animate__fadeIn transform -translate-y-1/2 -translate-x-1/2">&rarr;</button>
+        </div>
+    </section>
+    </div>
+    <script>
+        const courseCarousel = document.getElementById('courseCarousel');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        let currentPosition = 0;
+        const numCourses = document.querySelectorAll('.course-card').length;
+        const visibleCourses = 4;
+
+        nextButton.addEventListener('click', () => {
+            currentPosition = (currentPosition + 1) % numCourses;
+            updateCarousel();
+        });
+
+        prevButton.addEventListener('click', () => {
+            currentPosition = (currentPosition - 1 + numCourses) % numCourses;
+            updateCarousel();
+        });
+
+        function updateCarousel() {
+            const courseCards = document.querySelectorAll('.course-card');
+            const hiddenCourses = document.querySelectorAll('.hidden-course .course-card');
+
+            for (const card of courseCards) {
+                card.style.display = 'none';
+            }
+            for (let i = 0; i < visibleCourses; i++) {
+                const index = (currentPosition + i) % numCourses;
+                courseCards[index].style.display = 'block';
+            }
+        }
+        // Initial setup
+        updateCarousel();
+
+        
+    </script>
+
+
+
+
+
+
+    <br><br>
+    <div class="bg-blue-500 text-white py-16">
+        <div class="container mx-auto text-center">
+            <h6 class="text-xs text-gray-300 font-semibold tracking-widest">Our Instructors</h6>
+            <h1 class="text-4xl font-extrabold leading-tight">Meet Our Instructors</h1>
+        </div>
+    </div>
+    <section id="Instructors">
+        <div class="transparent-section"> 
+         <div class="container mx-auto text-center">
+            <br><br>
+            <div id="instructorsCarousel" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 pb-6">
+                <!-- Instructor 1 -->
+                <div class="course-card1 bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transform transition duration-300 hover:scale-105">
+                    <img src=" {% static 'img/takumi Saito.jpg' %}" alt="John Doe" class="w-full h-72 object-cover">
+                    <div class="p-6">
+                        <h5 class="text-2xl text-gray-900 font-semibold mb-2">takumi Saito</h5>
+                        <p class="text-gray-600 mb-3">Web Design & Development</p>
+                        <div class="flex justify-center space-x-4">
+                            <a href="#" class="text-blue-500 hover:text-blue-700 transition duration-300 transform hover:scale-110">
+                                <i class="fab fa-twitter text-2xl"></i>
+                            </a>
+                            <a href="#" class="text-blue-500 hover:text-blue-700 transition duration-300 transform hover:scale-110">
+                                <i class="fab fa-facebook-f text-2xl"></i>
+                            </a>
+                            <a href="#" class="text-blue-500 hover:text-blue-700 transition duration-300 transform hover:scale-110">
+                                <i class="fab fa-linkedin-in text-2xl"></i>
+                            </a>
+                        </div>
+                        <a href="#" class="block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full mt-4 transition duration-300 transform hover:scale-105">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+    
+                <!-- Repeat the above instructor card for other instructors -->
+                <!-- Instructor 1 -->
+                <div class="course-card1 bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transform transition duration-300 hover:scale-105">
+                    <img src=" {% static 'img/Yui Tanaka.jpg' %}" alt="John Doe" class="w-full h-72 object-cover">
+                    <div class="p-6">
+                        <h5 class="text-2xl text-gray-900 font-semibold mb-2">Yui Tanaka</h5>
+                        <p class="text-gray-600 mb-3">Mobile App Development</p>
+                        <div class="flex justify-center space-x-4">
+                            <a href="#" class="text-blue-500 hover:text-blue-700 transition duration-300 transform hover:scale-110">
+                                <i class="fab fa-twitter text-2xl"></i>
+                            </a>
+                            <a href="#" class="text-blue-500 hover:text-blue-700 transition duration-300 transform hover:scale-110">
+                                <i class="fab fa-facebook-f text-2xl"></i>
+                            </a>
+                            <a href="#" class="text-blue-500 hover:text-blue-700 transition duration-300 transform hover:scale-110">
+                                <i class="fab fa-linkedin-in text-2xl"></i>
+                            </a>
+                        </div>
+                        <a href="#" class="block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full mt-4 transition duration-300 transform hover:scale-105">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+    
+                <!-- Repeat the above instructor card for other instructors -->
+                <!-- Instructor 1 -->
+                <div class="course-card1 bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transform transition duration-300 hover:scale-105">
+                    <img src=" {% static 'img/Ryota Suzuki.jpg' %}" alt="John Doe" class="w-full h-72 object-cover">
+                    <div class="p-6">
+                        <h5 class="text-2xl text-gray-900 font-semibold mb-2">Ryota Suzuki</h5>
+                        <p class="text-gray-600 mb-3">SEO</p>
+                        <div class="flex justify-center space-x-4">
+                            <a href="#" class="text-blue-500 hover:text-blue-700 transition duration-300 transform hover:scale-110">
+                                <i class="fab fa-twitter text-2xl"></i>
+                            </a>
+                            <a href="#" class="text-blue-500 hover:text-blue-700 transition duration-300 transform hover:scale-110">
+                                <i class="fab fa-facebook-f text-2xl"></i>
+                            </a>
+                            <a href="#" class="text-blue-500 hover:text-blue-700 transition duration-300 transform hover:scale-110">
+                                <i class="fab fa-linkedin-in text-2xl"></i>
+                            </a>
+                        </div>
+                        <a href="#" class="block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full mt-4 transition duration-300 transform hover:scale-105">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+    
+                <!-- Repeat the above instructor card for other instructors -->
+                <!-- Instructor 1 -->
+                <div class="course-card1 bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transform transition duration-300 hover:scale-105">
+                    <img src=" {% static 'img/Miyu Watanabe.jpg' %}" alt="John Doe" class="w-full h-72 object-cover">
+                    <div class="p-6">
+                        <h5 class="text-2xl text-gray-900 font-semibold mb-2">Miyu Watanabe</h5>
+                        <p class="text-gray-600 mb-3">Research</p>
+                        <div class="flex justify-center space-x-4">
+                            <a href="#" class="text-blue-500 hover:text-blue-700 transition duration-300 transform hover:scale-110">
+                                <i class="fab fa-twitter text-2xl"></i>
+                            </a>
+                            <a href="#" class="text-blue-500 hover:text-blue-700 transition duration-300 transform hover:scale-110">
+                                <i class="fab fa-facebook-f text-2xl"></i>
+                            </a>
+                            <a href="#" class="text-blue-500 hover:text-blue-700 transition duration-300 transform hover:scale-110">
+                                <i class="fab fa-linkedin-in text-2xl"></i>
+                            </a>
+                        </div>
+                        <a href="#" class="block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full mt-4 transition duration-300 transform hover:scale-105">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+    
+                <!-- Repeat the above instructor card for other instructors -->
+                <!-- Instructor 1 -->
+                <div class="course-card1 bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transform transition duration-300 hover:scale-105">
+                    <img src=" {% static 'img/Kazuki hayashi.jpg' %}" alt="John Doe" class="w-full h-72 object-cover">
+                    <div class="p-6">
+                        <h5 class="text-2xl text-gray-900 font-semibold mb-2">Kazuki hayashi</h5>
+                        <p class="text-gray-600 mb-3">Digital Marketing</p>
+                        <div class="flex justify-center space-x-4">
+                            <a href="#" class="text-blue-500 hover:text-blue-700 transition duration-300 transform hover:scale-110">
+                                <i class="fab fa-twitter text-2xl"></i>
+                            </a>
+                            <a href="#" class="text-blue-500 hover:text-blue-700 transition duration-300 transform hover:scale-110">
+                                <i class="fab fa-facebook-f text-2xl"></i>
+                            </a>
+                            <a href="#" class="text-blue-500 hover:text-blue-700 transition duration-300 transform hover:scale-110">
+                                <i class="fab fa-linkedin-in text-2xl"></i>
+                            </a>
+                        </div>
+                        <a href="#" class="block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full mt-4 transition duration-300 transform hover:scale-105">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+    
+                
+            </div>
+                <!-- Repeat the above instructor card for other instructors -->
+               
+                <div class="text-center mt-6">
+                    <div class="flex justify-center">
+                        <button id="prevInstructorsButton" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full transition duration-300 transform hover:scale-105 mr-4">
+                            &larr; Previous1
+                        </button>
+                        <button id="nextInstructorsButton" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full transition duration-300 transform hover:scale-105">
+                            Next &rarr;
+                        </button>
+                    </div>
+                </div><br><br>
+            </div> 
+        </div>
+        
+</section>
+<style>
+    .hover-scale:hover {
+        transform: scale(1.02);
+    }
+</style>
+<script>
+    const prevButton1 = document.getElementById("prevInstructorsButton");
+    const nextButton1 = document.getElementById("nextInstructorsButton");
+    const courseCards1 = document.querySelectorAll(".course-card1");
+
+    let currentCardIndex1 = 0;
+
+    function updateVisibility() {
+        courseCards1.forEach((card, index) => {
+            if (index >= currentCardIndex1 && index < currentCardIndex1 + 4) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    }
+
+    nextButton1.addEventListener("click", () => {
+        currentCardIndex1 = Math.min(currentCardIndex1 + 4, courseCards1.length - 4);
+        updateVisibility();
+    });
+
+    prevButton1.addEventListener("click", () => {
+        currentCardIndex1 = Math.max(currentCardIndex1 - 4, 0);
+        updateVisibility();
+    });
+
+    updateVisibility();
+</script>
+<section id="Support">
+    <br><br><br><br>
+    <div class="container mx-auto p-8 bg-white shadow-lg rounded-lg hover-scale">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 hover-scale">
+
+            <!-- Contact Information -->
+            <div class="bg-blue-100 p-6 rounded-lg hover-scale">
+                <h2 class="text-2xl font-semibold text-blue-600 mb-4">Contact Information</h2>
+                <div class="mb-4 flex items-start space-x-4 hover-scale">
+                    <div class="w-12 h-12 flex items-center justify-center bg-blue-200 rounded-full hover-scale">
+                        <img src=" {% static 'img/location.png.png' %}" alt="Location Icon" class="w-6 h-6">
+                    </div>
+                    <div>
+                        <p class="text-gray-600 text-lg hover:text-blue-500 transition-transform duration-300 ease-in-out hover:scale-110">123 Main Street, Bangalore, India</p>
+                    </div>
+                </div>
+                <div class="mb-4 flex items-start space-x-4 hover-scale">
+                    <div class="w-12 h-12 flex items-center justify-center bg-blue-200 rounded-full hover-scale">
+                        <img src="{% static 'img/phone.png' %}" alt="Phone Icon" class="w-6 h-6">
+                    </div>
+                    <div>
+                        <p class="text-gray-600 text-lg hover:text-blue-500 transition-transform duration-300 ease-in-out hover:scale-110">+91 8867 004 280</p>
+                    </div>
+                </div>
+                <div class="mb-4 flex items-start space-x-4 hover-scale">
+                    <div class="w-12 h-12 flex items-center justify-center bg-blue-200 rounded-full hover-scale">
+                        <img src="{% static 'img/email.png' %}" alt="Email Icon" class="w-6 h-6">
+                    </div>
+                    <div>
+                        <p class="text-gray-600 text-lg hover:text-blue-500 transition-transform duration-300 ease-in-out hover:scale-110">SkillStratum@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="p-6 rounded-lg bg-white hover-scale">
+                <h2 class="text-2xl font-semibold text-blue-600 mb-4">Contact Us</h2>
+                <form>
+                    <div class="grid grid-cols-1 gap-4">
+                        <input type="text" class="w-full py-3 px-4 border rounded-lg focus:ring-2 focus:ring-blue-300 placeholder-blue-300 placeholder-opacity-50 hover-scale" placeholder="Your Name" required>
+                        <input type="email" class="w-full py-3 px-4 border rounded-lg focus:ring-2 focus:ring-blue-300 placeholder-blue-300 placeholder-opacity-50 hover-scale" placeholder="Your Email" required>
+                        <input type="text" class="w-full py-3 px-4 border rounded-lg focus:ring-2 focus:ring-blue-300 placeholder-blue-300 placeholder-opacity-50 hover-scale" placeholder="Subject" required>
+                        <textarea class="w-full py-3 px-4 border rounded-lg focus:ring-2 focus:ring-blue-300 placeholder-blue-300 placeholder-opacity-50 hover-scale" rows="5" placeholder="Message" required></textarea>
+                        <button class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:shadow-lg transform transition-transform duration-300 ease-in-out hover:scale-105 hover-scale" type="submit">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+</section>
+</div>
+</body>
+{% include "footer.html" %}
+</html>

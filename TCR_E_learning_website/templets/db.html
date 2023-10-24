@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css">
+    <style>
+        /* Add custom styles here */
+        .calendar-container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .calendar-header {
+            background-color: #4299e1;
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+        .calendar-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .calendar-header p {
+            font-size: 1.5rem;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            gap: 10px;
+        }
+        .calendar-day {
+            height: 120px;
+            border: 1px solid #e2e2e2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .calendar-day:hover {
+            background-color: #63b3ed;
+            transform: scale(1.05);
+        }
+        .today {
+            background-color: #68d391;
+            color: #fff;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans p-4">
+    <!-- Calendar Container -->
+    <div class="calendar-container">
+        <div class="calendar-header">
+            <h1 id="calendar-heading">Loading...</h1>
+            <p>Current Month</p>
+        </div>
+
+        <div class="calendar-grid">
+            <!-- Days of the week -->
+            <div class="calendar-day">Sun</div>
+            <div class="calendar-day">Mon</div>
+            <div class="calendar-day">Tue</div>
+            <div class="calendar-day">Wed</div>
+            <div class="calendar-day">Thu</div>
+            <div class="calendar-day">Fri</div>
+            <div class="calendar-day">Sat</div>
+        </div>
+    </div>
+
+    <!-- Separate JavaScript that runs after the page is loaded -->
+    <script>
+        function initializeDynamicContent() {
+            const today = new Date();
+            const currentMonth = today.getMonth();
+            const currentYear = today.getFullYear();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const calendarGrid = document.querySelector('.calendar-grid');
+            const calendarHeading = document.getElementById('calendar-heading');
+
+            calendarHeading.textContent = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(today);
+
+            for (let i = 0; i < firstDay; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.classList.add('calendar-day');
+                calendarGrid.appendChild(emptyDay);
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const currentDate = new Date(currentYear, currentMonth, day);
+                const isToday = currentDate.toDateString() === today.toDateString();
+                const className = isToday ? 'today' : '';
+
+                // Create and append the day cell
+                const calendarDay = document.createElement('div');
+                calendarDay.classList.add('calendar-day');
+                if (className) {
+                    calendarDay.classList.add(className);
+                }
+                calendarDay.textContent = day;
+                calendarGrid.appendChild(calendarDay);
+            }
+        }
+
+        // Load the JavaScript content after the page is fully loaded
+        window.onload = initializeDynamicContent;
+    </script>
+</body>
+</html>

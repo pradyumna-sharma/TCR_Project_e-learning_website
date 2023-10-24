@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Help & Support</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .contact-section {
+            background-color: #3498db;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            color: #fff;
+            max-width: 600px;
+            margin: 40px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section h1 {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 0 0 20px;
+        }
+
+        .contact-section p {
+            font-size: 18px;
+            margin: 0 0 30px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contact-link {
+            display: inline-block;
+            background-size: cover;
+            width: 80px;
+            height: 80px;
+            text-align: center;
+            line-height: 80px;
+            margin: 0 20px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 20px;
+            border-radius: 50%;
+            transition: transform 0.2s, background-color 0.2s, color 0.2s;
+        }
+
+        .instagram-link {
+            background-image: url("{% static 'img/instagram.jpeg' %}"); /* Replace with your Instagram image URL */
+            background-color: #E4405F; /* Instagram color */
+        }
+
+        .linkedin-link {
+            background-image: url("{% static 'img/linkedin.png' %}"); /* Replace with your LinkedIn image URL */
+            background-color: #0077B5; /* LinkedIn color */
+        }
+
+        .contact-link:hover {
+            transform: scale(1.1);
+            background-color: #ffcc00;
+            color: #3498db;
+        }
+
+        .contact-info {
+            font-size: 18px;
+        }
+
+        .contact-phone {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffcc00;
+            margin-top: 20px;
+        }
+
+        .contact-input label {
+            font-size: 18px;
+            display: block;
+        }
+
+        .contact-input textarea {
+            width: 100%;
+            max-width: 100%;
+            height: 100px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .contact-button {
+            background-color: #ffcc00;
+            color: #3498db;
+            padding: 10px 20px;
+            font-size: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact-button:hover {
+            background-color: #3498db;
+            color: #ffcc00;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="contact-section p-8">
+        <h1 class="text-3xl font-bold">Write To Us</h1>
+        <p class="text-lg">Please feel free to write us. Our executive will help you shortly.</p>
+        <form method="post">
+            <div class="contact-input my-4">
+                <label for="message" class="text-lg">Your Message:</label>
+                <textarea id="message" name="message" placeholder="Enter your message here" class="w-full p-2 border border-gray-300 rounded-lg text-lg"></textarea>
+            </div>
+            <button type="submit" class="contact-button">Submit</button>
+        </form>
+        <div class="contact-links my-6">
+            <a href="#" class="contact-link instagram-link"></a>
+            <a href="#" class="contact-link linkedin-link"></a>
+        </div>
+        <div class="contact-info text-lg">
+            <p>Call Us @</p>
+            <p class="contact-phone">Mobile Number: +91 9988776655</p>
+        </div>
+    </div>
+</body>
+</html>

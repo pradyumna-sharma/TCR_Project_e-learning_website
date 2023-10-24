@@ -1,0 +1,142 @@
+<!-- your_app/templates/your_app/user_settings.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Your head content here -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Internal CSS for enhanced styling */
+        body {
+            background-image: url("{% static 'img/ext.jpg' %}"); /* Add your background image URL here */
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            background-color: rgba(255, 255, 255, 0.7); /* Add transparency here */
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.9); /* Add transparency here */
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 1rem 0;
+            transition: all 0.3s; /* Smooth transition on hover */
+        }
+
+        .card:hover {
+            transform: scale(1.03); /* Increase size on hover */
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Add a stronger shadow on hover */
+        }
+
+        .btn-blue {
+            background-color: #3498db;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s; /* Smooth transition on hover */
+        }
+
+        .btn-blue:hover {
+            background-color: #1e70a0;
+            transform: scale(1.05); /* Increase size on hover */
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 0.5rem;
+            width: 100%;
+            transition: all 0.2s; /* Smooth transition on hover */
+        }
+
+        input[type="text"]:hover,
+        input[type="email"]:hover,
+        input[type="password"]:hover {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow on hover */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="text-2xl">User Settings</h1>
+    </header>
+    <main>
+        <section class="card">
+            <h2 class="text-2xl text-gray-800 mb-4">Account Settings</h2>
+            <form method="post" class="space-y-4">
+                {% csrf_token %}
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="{{ user_form.username.id }}">Username</label>
+                        {{ user_form.name }}
+                    </div>
+                    <div>
+                        <label for="{{ user_form.email.id }}">Email</label>
+                        {{ user_form.email }}
+                    </div>
+                </div>
+                <button type="submit" class="btn-blue mt-4">Update Account</button>
+            </form>
+        </section>
+        <section class="card">
+            <h2 class="text-2xl text-gray-800 mb-4">Change Password</h2>
+            <form method="post" class="space-y-4">
+                {% csrf_token %}
+                <div class="space-y-2">
+                    <label for="{{ password_form.old_password.id }}">Old Password</label>
+                    {{ password_form.old_password }}
+                </div>
+                <div class="space-y-2">
+                    <label for "{{ password_form.new_password1.id }}">New Password</label>
+                    {{ password_form.new_password1 }}
+                </div>
+                <div class="space-y-2">
+                    <label for="{{ password_form.new_password2.id }}">Confirm New Password</label>
+                    {{ password_form.new_password2 }}
+                </div>
+                <button type="submit" class="btn-blue mt-4">Change Password</button>
+            </form>
+        </section>
+    </main>
+    <script>
+        function displayAlert(message, type) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert-${type} p-4 m-4 border rounded`;
+            alertDiv.textContent = message;
+            document.body.appendChild(alertDiv);
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 5000);
+        }
+
+        // Fetch and display messages from the Django messages framework
+        const messages = [{% for message in messages %}"{{ message }}"{% if not forloop.last %}, {% endif %}{% endfor %}];
+        for (const message of messages) {
+            displayAlert(message, 'success'); // Adjust 'success' to 'error' or other Tailwind CSS alert classes as needed
+        }
+    </script>
+
+</body>
+</html>
